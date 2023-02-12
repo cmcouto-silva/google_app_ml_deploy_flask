@@ -8,7 +8,6 @@ app = Flask(__name__)
 def home():
     return "Welcome to the Medical Insurence Prediction API!"
 
-
 @app.route('/predict', methods=['POST'])
 def index():
     data_json = request.get_json()['data']
@@ -17,11 +16,8 @@ def index():
     with open('models/model.pkl', 'rb') as file:
         model = pickle.load(file)
 
-    prediction = model.predict(df).tolist()
-    output = prediction
-    
+    output = model.predict(df).tolist()
     return output
-
 
 if __name__ == '__main__':
     app.run()
